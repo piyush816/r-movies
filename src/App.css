@@ -1,38 +1,255 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --primary-bg: #000000;
+  --primary: #fca311;
+  --secondary-bg: #14213d;
+  --text: #fff;
+  --title: 18px;
+  --m-h: 10rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: var(--primary-bg);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* navbar css  */
+
+#navbar {
+  background-color: var(--primary);
+}
+
+.navbar-brand {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* movie css */
+
+.movie {
+  width: 200px;
+  color: var(--text);
+  background-color: var(--secondary-bg);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+a {
+  text-decoration: none;
+}
+
+.movie-info {
+  background-color: var(--secondary-bg);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+}
+
+.movie-poster {
+  object-fit: contain;
+  width: 100%;
+  height: 85%;
+  transition: all 700ms;
+  z-index: 1;
+}
+
+.movie-poster:hover {
+  transform: scale(1.1);
+}
+
+.button {
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  border: 2px solid var(--primary);
+  margin-right: 14px;
+  transition: all 200ms;
+  color: var(--text);
+}
+
+.button:hover {
+  background-color: var(--primary);
+  color: #000000;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.icon-md {
+  font-size: 38px;
+}
+
+/* movie deatil css  */
+
+.bg {
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+}
+
+.bg .cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.bg::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+/* sidebar  */
+.side-bar {
+  width: 4rem;
+  background-color: var(--secondary-bg);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  color: var(--primary);
+  text-align: center;
+  padding: 1.3rem 0;
+  z-index: 10;
+}
+
+.side-bar a,
+.link {
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  transition: all 300ms;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 3rem;
+}
+
+.side-bar a.active,
+.side-bar a:hover {
+  background-color: var(--primary);
+  color: black;
+}
+
+.side-bar .link:hover {
+  background-color: var(--primary);
+  color: black;
+}
+
+/* search bar  */
+
+.search-bar {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.search-bar input {
+  width: 80%;
+  height: 3rem;
+  padding: 1rem;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+}
+
+.menu {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+}
+
+/* .error-page  */
+.error-page {
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  place-items: center;
+}
+
+.page-link {
+  background-color: var(--secondary-bg) !important;
+  border: 0;
+  color: var(--text);
+}
+
+.page-link:hover {
+  color: var(--text);
+}
+
+.active:hover {
+  color: #000000;
+}
+
+.pagination .active,
+.button.active {
+  background-color: var(--primary) !important;
+  color: #000000;
+}
+
+/* responsive  */
+
+@media (max-width: 1200px) {
+  .banner {
+    width: 70%;
+    object-fit: cover;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 786px) {
+  .navbar-brand {
+    text-align: center;
+    margin: auto;
+  }
+  #searchbar {
+    margin: auto;
+    width: 100%;
+  }
+  .movie {
+    width: 95%;
+    margin-left: 0.6rem;
+  }
+  .movie-info {
+    padding: 1rem !important;
+    font-size: 18px;
+  }
+  .banner {
+    width: 100%;
+    object-fit: cover;
   }
 }
